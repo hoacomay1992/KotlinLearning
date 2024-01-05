@@ -86,7 +86,7 @@ Toán tử launchIn sẽ giúp chúng ta.
  * launchIn  Toán tử này truyền vào một param là CoroutineScope và return một biến Job. Biến job này có thể giúp chúng ta cancel code trong flow mà không
  * cancel hết cả coroutine. Code trong coroutine vẫn tiếp tục chạy.
  */
-fun events(): Flow<Int> = (1..3).asFlow().onEach { delay(100) }
+fun events(): Flow<Int> = (1..3).asFlow().onEach { delay(1000) }
 
 fun launchInOperation() = runBlocking<Unit> {
     events()
@@ -120,8 +120,7 @@ fun flowException() = runBlocking {
 
     fooExceptionInt().onEach { value ->
         println("3 / $value = ${3 / value}") // nơi xảy ra Exception
-    }.catch { e -> println("Caught $e") }
-        .collect()
+    }.catch { e -> println("Caught $e") }.collect()
 
 }
 
